@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- REACT  LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY (take use of ECMA beyond ES5)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <title>Let's React!</title>
+</head>
+
+<body>
+    <!-- Location in DOM to insert react content -->
+    <div id="app">
+        React yet to render!
+    </div>
+    <!-- javascript (need the type babel to work with JSX)-->
+    <script type="text/babel">
+
+        var siblings = [{
+            id: "1", name: "Chris", female: false
+        },
+        {
+            id: "2", name: "Jeff", female: false
+        },
+        {
+            id: "3", name: "Julie", female: true
+        },
+        {
+            id: "4", name: "Jessica", female: true
+        }]
+
+        function FamilyList(props) {
+            var siblings = props.siblings;
+            var siblingsNames = siblings.map(function (x) {
+                //React keeps track of "key" for each component, so that it knows which part of DOM to update
+                //so we need to assign "key" to each div component we are creating here 
+                return <div key={x.id}>{x.name}</div>
+            });
+
+            return (
+                <div>{siblingsNames}</div>
+            );
+            // return (
+            //     <div>{props.siblings.map(function (x) {
+            //         //React keeps track of "key" for each component, so that it knows which part of DOM to update
+            //         //so we need to assign "key" to each div component we are creating here 
+            //         return <div key={x.id}>{x.name}</div>
+            //     })}</div>
+            // );
+        }
+        //render react to DOM 
+        ReactDOM.render(
+            <FamilyList siblings={siblings} />,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>

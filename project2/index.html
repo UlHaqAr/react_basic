@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- REACT  LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY (take use of ECMA beyond ES5)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <!-- using a cdn link to "font awesome" -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Friendly</title>
+</head>
+
+<body>
+    <div id="app">
+        React yet to render!
+    </div>
+
+    <script type="text/babel">
+
+        //Friendly = Avatar + UserName + GetConnected, GetConnected = Like + Share + Add
+
+        //Friendly complex cmp
+        class DinnerVote extends React.Component {
+            constructor(props)
+            {
+                super(props);
+                this.state = {
+                    votes:0
+                }
+                this.upVote = this.upVote.bind(this);
+                this.downVote = this.downVote.bind(this);
+            }
+            upVote()
+            {
+                this.setState({
+                    votes: this.state.votes + 1
+                });
+            }
+            downVote()
+            {
+                this.setState({
+                    votes: this.state.votes - 1
+                });
+            }
+            render() {
+                var DinnerVoteStyle = {
+                    display:"inline-block",  //to display all DinnerVote components left to right
+                    margin:20, //spacing between two DinnerVote componentd
+                    height: 500,
+                    width: 300,
+                    padding:0,
+                    backgroundColor: "#FFF",
+                    filter: "drop-shadow(0 0 0.5rem grey)",
+                    textAlign:"center"
+                }
+                var imageStyle = {
+                    height:200,
+                    width:200,
+                    marginTop:30
+                }
+                var upVoteStyle = {
+                    color: "blue"
+                } 
+                var downVoteStyle = {
+                    color: "red"
+                }
+            return (
+                <div style={DinnerVoteStyle}>
+                    <img src={this.props.img} alt="food" style={imageStyle}/>
+                    <h1>{this.props.name}</h1>
+                    <p style={upVoteStyle}>Up Vote</p>
+                    <button onClick={this.upVote}>+1</button>
+                    <p style={downVoteStyle}>Down Vote</p>
+                    <button onClick={this.downVote}>-1</button>
+                    <p>Total : {this.state.votes}</p>
+                </div>
+            );
+            }
+        }
+       
+        //render react to DOM 
+        ReactDOM.render(
+            <div>
+                <DinnerVote name="Shawarma" img="https://media-cdn.tripadvisor.com/media/photo-s/10/7b/36/61/signature-chicken-shawarma.jpg"/>
+                <DinnerVote name="Kebab" img="https://i.ytimg.com/vi/atrlcy5eGQA/maxresdefault.jpg"/>
+                <DinnerVote name="Chaat" img="https://static.toiimg.com/thumb/52727664.cms?width=1200&height=1200"/>
+            </div>,          
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>

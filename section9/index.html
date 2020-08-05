@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- REACT  LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY (take use of ECMA beyond ES5)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <title>Let's React!</title>
+</head>
+
+<body>
+    <!-- Location in DOM to insert react content -->
+    <div id="app">
+        React yet to render!
+    </div>
+    <!-- javascript (need the type babel to work with JSX)-->
+    <script type="text/babel">
+
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    items: []
+                }
+            }
+            //component lifecycle methods -> componentDidMount -> used to start AJAX call to load data, can use setState
+            //componentDidMount() is invoked immediately after a component is mounted (inserted into the tree)
+            //
+            componentDidMount() {
+                //fetch in JS returns a Promise which can be resolved to a response
+                //the free SWAPI api returns 10 elements
+                fetch('https://swapi.dev/api/people/')
+                    // .then(function (res) {
+                    //     return res.json()
+                    // })
+                    .then(res => res.json())
+                    .then(resp => {
+                        this.setState({
+                            //"results" is a property in the response
+                            items: resp.results
+                        });
+                    })
+                    .catch(err => {
+                        console.log('Error in fetching API');
+                    });
+            }
+
+            render() {
+                var items = this.state.items;
+                //let us log the data coming in
+                console.log(items);
+                return (
+                    <div>{items.map(function(x) {
+                        //since name is unique in data, we can use it as key
+                        return <h4 key={x.name}>{x.name} has eye of color {x.eye_color}</h4>
+                    })}</div>
+                );
+            }
+
+        }
+
+        //render react to DOM 
+        ReactDOM.render(
+            <App />,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>

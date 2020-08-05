@@ -1,0 +1,49 @@
+Angular is a JavaScript framework written in TypeScript. It was developed and is maintained by Google.
+React is a JavaScript library developed and maintained by Facebook. 
+
+Angular is considered a framework because it offers strong opinions as to how your application should be structured. 
+Don’t need to decide which routing libraries to use or other such considerations.
+Drawback is that you have less flexibility – you must use what Angular provides.
+
+	Templates, based on an extended version of HTML
+	XSS protection
+	Dependency injection
+	Ajax requests by @angular/HTTP
+	Routing, provided by @angular/router
+	Component CSS encapsulation
+	Utilities for unit-testing components.
+	@angular/forms for building forms
+
+React only provides the “view” in MVC – you need to solve the M and C on your own. 
+Each React project is different and requires a decision requiring its folder hierarchy and architecture. 
+
+	It has JSX, an XML-like language built on top of JavaScript
+	XSS protection
+	No dependency injection
+	Fetch for Ajax requests
+	Utilities for unit-testing components
+
+	Some popular libraries to add functionality to React are:
+
+	React-router for routing
+	Redux or MobX for state management
+	Enzyme for additional testing utilities
+
+React uses a virtual DOM.
+	Let’s say that you want to update a user’s age within a block of HTML tags. A virtual DOM only looks at the differences between the previous and 
+	current HTML and changes the part that is required to be updated. Git employs a similar method, which distinguishes the changes in a file.
+	Conversely, Angular opted to use a regular DOM. This will update the entire tree structure of HTML tags until it reaches the user’s age.
+
+React combines UI templates and inline JavaScript logic, called “JSX”.
+	React uses something called a component, which contains both the markup AND logic in the same file. 
+	It also uses an XML-like language that allows you to write markup directly in your JavaScript code. 
+	JSX is a big advantage for development, because you have everything in one place, and code completion and compile-time checks work better.
+	Babel is used to convert JSX to javascript.
+
+React only has one-way binding. 
+	First, the model state is updated, and then it renders the change in the UI element. 
+	However, if you change the UI element, the model state DOES NOT change
+	
+Events in React	
+	names using camel case ex: onClick
+	pass a function as event handler in JSX 

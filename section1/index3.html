@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- REACT  LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY (take use of ECMA beyond ES5)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <title>Let's React!</title>
+</head>
+<body>
+    <!-- Location in DOM to insert react content -->
+    <div id="app">
+        React yet to render!
+    </div>
+    <!-- javascript (need the type babel to work with JSX)-->
+    <script type="text/babel">
+        //variable for jsx
+        var jsxVal = <h1>Hello World !<ul><li>up</li><li>middle</li><li>down</li></ul></h1>;
+        //variable for location 
+        var domLocation = document.getElementById("app");
+        //render react to DOM 
+        ReactDOM.render(
+            //react what? = JSX (the UI code below will go inside the element mentioned in the 2nd argument of render() method here)
+            jsxVal,
+            //react where? = the div having id "app"
+            domLocation
+        );
+    </script>
+</body>
+</html>
+
+<!-- babel converts the overall code as below -->
+<!-- ReactDOM.render(React.createElement("h1", null, "Hello World !",  
+					React.createElement("ul", null,  
+						React.createElement("li", null, "up"),  
+						React.createElement("li", null, "middle"),  
+						React.createElement("li", null, "down"))), 
+				document.getElementById("app")); -->

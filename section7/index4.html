@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- REACT  LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY (take use of ECMA beyond ES5)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <title>Let's React!</title>
+</head>
+
+<body>
+    <!-- Location in DOM to insert react content -->
+    <div id="app">
+        React yet to render!
+    </div>
+    <!-- javascript (need the type babel to work with JSX)-->
+    <script type="text/babel">
+
+        class GuessAge extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    age: 'press the button'
+                }
+                //bind the React component to the ES6 class
+                //properties of ES6 class do not automatically bind to React class instance
+                //"GuessAge" is a ES6 class being customized to React component
+                //if we dont do this, "setState" in the "handleAge" will not point to "GuessAge" component
+                this.handleAge = this.handleAge.bind(this);
+            }
+            handleAge() {
+                //setState is method of React
+                this.setState({
+                    age:37
+                });
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>Game</h1>
+                        <h2>{this.state.age}</h2>
+                        <button onClick={this.handleAge}  >Reveal age</button>
+                    </div>
+                );
+            }
+            
+            // render() {
+            //     return (
+            //         <div>
+            //             <h1>Game</h1>
+            //             <h2>{this.state.age}</h2>
+            //             using the line below, u can eliminate line 34
+            //             <button onClick={this.handleAge.bind(this)}  >Reveal age</button>
+            //         </div>
+            //     );
+            // }
+
+            // render() {
+            //     return (
+            //         <div>
+            //             <h1>Game</h1>
+            //             <h2>{this.state.age}</h2>
+            //             using the arrow function, u dont need "bind" at all, coz it preserves the context
+            //             <button onClick={() => this.handleAge()}  >Reveal age</button>
+            //         </div>
+            //     );
+            // }
+        }
+        
+        //render react to DOM 
+        ReactDOM.render(
+            <GuessAge />,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>
